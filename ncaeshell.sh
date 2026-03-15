@@ -52,16 +52,29 @@ BACKUP_DIR="/root/ncae_backups/$(date +%Y%m%d_%H%M%S)"
 #  !! REPLACE THESE WHEN RELEASED !!
 # =============================================================================
 # TODO: Replace with real scoring engine public key when released
-AUTHORIZED_KEY="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC0PLACEHOLDER_REPLACE_ME_WITH_REAL_KEY_WHEN_RELEASED placeholder@scoring-engine"
+AUTHORIZED_KEY="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCcM4aDj8Y4COv+f8bd2WsrIynlbRGgDj2+q9aBeW1Umj5euxnO1vWsjfkpKnyE/ORsI6gkkME9ojAzNAPquWMh2YG+n11FB1iZl2S6yuZB7dkVQZSKpVYwRvZv2RnYDQdcVnX9oWMiGrBWEAi4jxcYykz8nunaO2SxjEwzuKdW8lnnh2BvOO9RkzmSXIIdPYgSf8bFFC7XFMfRrlMXlsxbG3u/NaFjirfvcXKexz06L6qYUzob8IBPsKGaRjO+vEdg6B4lH1lMk1JQ4GtGOJH6zePfB6Gf7rp31261VRfkpbpaDAznTzh7bgpq78E7SenatNbezLDaGq3Zra3j53u7XaSVipkW0S3YcXczhte2J9kvo6u6s094vrcQfB9YigH4KhXpCErFk08NkYAEJDdqFqXIjvzsro+2/EW1KKB9aNPSSM9EZzhYc+cBAl4+ohmEPej1m15vcpw3k+kpo1NC2rwEXIFxmvTme1A2oIZZBpgzUqfmvSPwLXF0EyfN9Lk= SCORING KEY DO NOT REMOVE"
 
 # TODO: Replace/extend this list with all 25-30 real users when released
 # Format: just the username — key auth only, no passwords for SSH
 SCORED_USERS=(
-    "user01"
-    "user02"
-    "user03"
-    "user04"
-    "user05"
+    "clancy"
+    "todd_k"
+    "torch_bearer"
+    "ned"
+    "trash"
+    "blurry_face"
+    "nico"
+    "keons"
+    "sacarvo"
+    "listo"
+    "lisdn"
+    "reisdro"
+    "vetomo"
+    "nills"
+    "vialists"
+    "simone_weil"
+    "henri_cartan"
+    "claude_chevalley"
     # ── ADD REAL USERS HERE WHEN RELEASED ──
     # "alice"
     # "bob"
@@ -710,7 +723,7 @@ EOF
         id "$user" &>/dev/null || useradd -m -s /bin/bash "$user"
         usermod -aG smbusers "$user"
         # Set SMB password same as system (scoring engine needs to auth)
-        echo -e "Password1!\nPassword1!" | smbpasswd -a "$user" -s 2>>"$LOGFILE" && \
+        echo -e "cnyrocks\ncnyrocks" | smbpasswd -a "$user" -s 2>>"$LOGFILE" && \
             ok "  SMB user added: ${user}" || warn "  SMB user failed: ${user}"
     done
 
@@ -727,7 +740,7 @@ EOF
 
     echo
     ok "SMB SETUP COMPLETE"
-    warn "SMB passwords set to 'Password1!' — change them and update PCR if required!"
+    warn "SMB passwords set to 'cnyrocks' — change them and update PCR if required!"
     testparm -s 2>/dev/null | head -30
 }
 
