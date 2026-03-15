@@ -84,7 +84,7 @@ SCORED_USERS=(
 
 # SMB share config — update share name/path if different
 SMB_SHARE_NAME="share"
-SMB_SHARE_PATH="/srv/samba/share"
+SMB_SHARE_PATH="/mnt/files"
 # =============================================================================
 
 # =============================================================================
